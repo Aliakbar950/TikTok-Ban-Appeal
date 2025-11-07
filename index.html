@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Ban Appeal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #0a0a2a;
+            color: #00ffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Hacking matrix background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 2px solid #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #00ffff;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            color: #cccccc;
+        }
+        
+        .appeal-box {
+            background-color: rgba(0, 20, 40, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        
+        .appeal-title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+        
+        .appeal-content {
+            line-height: 1.6;
+            color: #cccccc;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #004466;
+            border-radius: 3px;
+            background-color: rgba(0, 10, 20, 0.5);
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .copy-btn {
+            background-color: #0066cc;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 102, 204, 0.7);
+        }
+        
+        .copy-btn:hover {
+            background-color: #0088ff;
+            box-shadow: 0 0 15px rgba(0, 136, 255, 0.9);
+        }
+        
+        .open-link-btn {
+            background-color: #00aa44;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 170, 68, 0.7);
+        }
+        
+        .open-link-btn:hover {
+            background-color: #00cc55;
+            box-shadow: 0 0 15px rgba(0, 204, 85, 0.9);
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.7);
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #2eff7a;
+            box-shadow: 0 0 15px rgba(46, 255, 122, 0.9);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #00ffff;
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+            }
+            to {
+                text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Toast notification for copy */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00aa44;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 170, 68, 0.7);
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix background -->
+    <canvas id="matrix"></canvas>
+    
+    <!-- Toast notification -->
+    <div class="toast" id="copyToast">Appeal Copied Successfully!</div>
+    
+    <div class="container">
+        <header>
+            <h1 class="main-title">×Ali_RaJput×</h1>
+            <h2 class="subtitle">TikTok Permanent Ban</h2>
+            <p class="description">Appeal Solution for TikTok Account Issues</p>
+        </header>
+        
+        <div class="appeal-box">
+            <h3 class="appeal-title">TikTok Ban Appeal</h3>
+            <div class="appeal-content" id="appealText">
+                <p>Subject: Formal Complaint and Urgent Appeal Regarding Harassment by User @USERNAME</p>
+                <br>
+                <p>To: TikTok Trust and Safety Team / Safety Support</p>
+                <br>
+                <p>Dear TikTok Trust and Safety Team,</p>
+                <br>
+                <p>I am writing to file a formal complaint and request urgent action against the user with the handle @USERNAME for severe and repeated violations of TikTok's Community Guidelines.</p>
+                <br>
+                <p>This user has been engaged in a sustained pattern of targeted harassment toward me, which includes sending unsolicited, abusive, insulting, and sexually explicit direct messages. This conduct is not only deeply offensive and distressing but also constitutes a clear breach of TikTok's policies on harassment and bullying, as outlined in your Community Guidelines.</p>
+                <br>
+                <p>I have attached screenshots as evidence of these interactions for your review [*Optional: add this line if you have evidence*]. The nature of this behavior necessitates immediate intervention to prevent further harm to me and to protect other users from similar abuse.</p>
+                <br>
+                <p>I respectfully urge you to investigate this account and take the strictest permissible action, which may include the immediate suspension or permanent removal of the account @USERNAME from the platform.</p>
+                <br>
+                <p>For your reference, my account details are as follows:</p>
+                <br>
+                <p>· My TikTok Username: @YOURUSERNAME</p>
+                <p>· My Profile URL: https://www.tiktok.com/@YOURUSERNAME</p>
+                <p>· Associated Email: [your.email@example.com]</p>
+                <br>
+                <p>Thank you for your prompt attention to this serious matter. I trust that you will handle it with the urgency it requires to maintain a safe and respectful environment for all TikTok users.</p>
+            </div>
+        </div>
+        
+        <div class="buttons-container">
+            <button class="btn copy-btn" id="copyAppeal">Copy Appeal</button>
+            <button class="btn open-link-btn" id="openLink">Open TikTok Support</button>
+            <a href="https://chat.whatsapp.com/KldxjbtsgQ31s52Cdx5kkI?mode=ac_t" target="_blank" class="btn whatsapp-btn">Join WhatsApp Group</a>
+        </div>
+        
+        <footer>
+            <p>© 2025 ×Ali_RaJput× | TikTok Ban Appeal Solution</p>
+        </footer>
+    </div>
+
+    <script>
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$#@%&!*';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 42, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ffff';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 33);
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Copy appeal text functionality - FIXED VERSION
+        document.getElementById('copyAppeal').addEventListener('click', function() {
+            const appealText = document.getElementById('appealText').innerText;
+            
+            // Create a temporary textarea element
+            const textArea = document.createElement('textarea');
+            textArea.value = appealText;
+            document.body.appendChild(textArea);
+            
+            // Select and copy the text
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                // Try using the modern clipboard API first
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(appealText).then(function() {
+                        showCopySuccess();
+                    }).catch(function() {
+                        // Fallback to execCommand if clipboard API fails
+                        document.execCommand('copy');
+                        showCopySuccess();
+                    });
+                } else {
+                    // Fallback for older browsers
+                    document.execCommand('copy');
+                    showCopySuccess();
+                }
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            } finally {
+                // Clean up
+                document.body.removeChild(textArea);
+            }
+        });
+        
+        // Show copy success message
+        function showCopySuccess() {
+            const toast = document.getElementById('copyToast');
+            toast.style.display = 'block';
+            
+            // Change button text temporarily
+            const copyBtn = document.getElementById('copyAppeal');
+            const originalText = copyBtn.innerText;
+            copyBtn.innerText = 'Copied!';
+            copyBtn.style.backgroundColor = '#00aa44';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+                copyBtn.innerText = originalText;
+                copyBtn.style.backgroundColor = '#0066cc';
+            }, 2000);
+        }
+        
+        // Open TikTok support link
+        document.getElementById('openLink').addEventListener('click', function() {
+            window.open('https://www.tiktok.com/legal/report/feedback', '_blank');
+        });
+    </script>
+</body>
+</html>
